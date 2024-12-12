@@ -1,0 +1,94 @@
+service: school-bus-scraper
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: us-east-1
+  environment:
+    DB_HOST: ${env:DB_HOST}
+    DB_NAME: ${env:DB_NAME}
+    DB_USER: ${env:DB_USER}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    S3_BUCKET: ${env:S3_BUCKET}
+    DEBUG: ${env:DEBUG}
+
+functions:
+  scraper:
+    handler: handler.lambda_handler
+    timeout: 120
+    memorySize: 256
+    events:
+      - http:
+          path: run-scraper
+          method: post
+          async: true
+
+custom:
+  pythonRequirements:
+    dockerizePip: false
+    useStaticCache: false
+    slim: true
+    strip: true
+
+package:
+  include:
+    - src/**
+    - handler.py
+    - requirements.txt
+    - package/**
+    - "*.py"
+    - "**/*.py"
+  exclude:
+    - busesforsale-venv/**
+    - node_modules/**
+    - .venv/**
+    - __pycache__/**
+    - .pytest_cache/**
+    - tests/**
+    - .serverless/**
+    - "*.md"
+    - .DS_Store
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-python-requirements
+
+resources:
+  Resources:
+    ScraperExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action:
+                - sts:AssumeRole
+        Policies:
+          - PolicyName: ScraperPolicy
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - s3:PutObject
+                    - s3:PutObjectAcl
+                    - s3:GetObject
+                  Resource:
+                    - "arn:aws:s3:::bus-scraper-data/*"
+                    - "arn:aws:s3:::bus-scraper-data"
+                - Effect: Allow
+                  Action:
+                    - rds:Connect
+                    - rds:DescribeDBInstances
+                  Resource: "*"
+                - Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                  Resource: "arn:aws:logs:*:*:*"
+
