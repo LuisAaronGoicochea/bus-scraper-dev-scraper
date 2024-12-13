@@ -1,4 +1,4 @@
-# School Bus Listings Scraper
+# Bus Listings Scraper
 
 This project implements a technical solution to scrape, process, and integrate detailed school bus listings into a structured database. It adheres to industry best practices for scalability, accuracy, and reusability. Built to evaluate advanced skills in web scraping, ETL pipelines, and database operations, this solution leverages a robust AWS-based architecture.
 
