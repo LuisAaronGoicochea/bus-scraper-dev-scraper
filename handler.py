@@ -26,6 +26,8 @@ def lambda_handler(event, context):
 
     try:
         settings = Settings()
+        settings.validate()  # Asegurarse de validar las configuraciones
+
         etl = ETL(settings)
 
         # Step 1: Extract data
@@ -40,8 +42,8 @@ def lambda_handler(event, context):
         logger.info("Starting loading phase.")
         etl.load(transformed_data)
 
-        # Optionally: Save data to S3 for backup
-        logger.info("Uploading transformed data to S3 for backup.")
+        # Step 4: Always upload data to S3
+        logger.info("Uploading transformed data to S3.")
         etl.load_to_s3(
             data=transformed_data,
             bucket_name=settings.S3_BUCKET_NAME,

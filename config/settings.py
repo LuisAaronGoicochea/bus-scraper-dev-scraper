@@ -4,7 +4,7 @@ class Settings:
     """Class to handle application settings and environment variables."""
 
     # Base URL for scraping
-    BASE_URL = "https://www.centralstatesbus.com/inventory/bus-for-sale/"
+    BASE_URL = "https://www.centralstatesbus.com"
 
     # AWS Configurations
     S3_BUCKET_NAME = os.getenv("S3_BUCKET")

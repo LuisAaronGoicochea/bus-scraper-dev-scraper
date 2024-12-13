@@ -91,7 +91,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-c9ec7096-4db4",
-          "S3Key": "serverless/school-bus-scraper/dev/1734031236337-2024-12-12T19:20:36.337Z/school-bus-scraper.zip"
+          "S3Key": "serverless/school-bus-scraper/dev/1734063823105-2024-12-13T04:23:43.105Z/school-bus-scraper.zip"
         },
         "Handler": "handler.lambda_handler",
         "Runtime": "python3.9",
@@ -120,14 +120,14 @@
         "ScraperLogGroup"
       ]
     },
-    "ScraperLambdaVersionSQvzzf4GwfhFDFyllPwSGSWfn3zZNzORJLCIBeKa4": {
+    "ScraperLambdaVersion6EZ2OSavaIEUVYRFkKmPLiLGbTVeU37f289vv41DE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ScraperLambdaFunction"
         },
-        "CodeSha256": "UaaDMw33m4TSAttzEQS+ufCbEvQdAkF+6jwcQsFnXl8="
+        "CodeSha256": "wcAdT+3ExewQuM4iW1R/zeuWS7aLAQ6rceOefJ2gNMU="
       }
     },
     "ApiGatewayRestApi": {
@@ -313,7 +313,7 @@
         "ScraperLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1734031195948": {
+    "ApiGatewayDeployment1734063778898": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -433,7 +433,7 @@
     "ScraperLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ScraperLambdaVersionSQvzzf4GwfhFDFyllPwSGSWfn3zZNzORJLCIBeKa4"
+        "Ref": "ScraperLambdaVersion6EZ2OSavaIEUVYRFkKmPLiLGbTVeU37f289vv41DE"
       },
       "Export": {
         "Name": "sls-school-bus-scraper-dev-ScraperLambdaFunctionQualifiedArn"
