@@ -1,0 +1,15 @@
+busesforsale-venv/
+.venv/
+__pycache__/
+.DS_Store
+.serverless/
+.env
+*.pyc
+*.pyo
+*.pyd
+*.log
+.pytest_cache/
+tests/__pycache__/
+.idea/
+.vscode/
+node_modules/
