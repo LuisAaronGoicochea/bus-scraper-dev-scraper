@@ -50,7 +50,7 @@ This solution demonstrates expertise in:
 
 Below is the visual representation of the AWS-based architecture:
 
-![AWS Architecture](images/busesforsale_architecture.png)
+![AWS Architecture](images/busesforsale_diagram_2.png)
 
 ### Explanation of the Architecture
 
